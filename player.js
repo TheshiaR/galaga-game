@@ -21,7 +21,6 @@ function Player(x, y, board) {
       self.x = self.x + self.speed * self.direction
       self.sprite.style.left = self.x + 'px'
     }
-    console.log(self.x)
   }
 }
 
