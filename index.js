@@ -1,9 +1,10 @@
 import { Player } from "./player.js"
 import { Enemy } from "./enemy.js"
+import { Bullet } from "./bullet.js"
 
 var board = document.getElementById('main-board')
+
 var player = new Player(225, 750, board)
- 
 player.insertPlayer()
 
 window.addEventListener('keydown', function(e) {
@@ -13,6 +14,10 @@ window.addEventListener('keydown', function(e) {
       break
     case 'd':
       player.direction = 1
+      break
+    case ' ':
+      var bullet = new Bullet(player.x + 20, player.y - 10, board)
+      bullet.insertBullet()
       break
   }
 })
@@ -28,7 +33,7 @@ function start() {
 
 function playerMovement() {
   if(player.isDead) {
-    alert('Game Over')
+    //alert('Game Over')
     //gameOver()
   }
   player.move()
