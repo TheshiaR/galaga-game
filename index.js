@@ -2,10 +2,11 @@ var board = document.getElementById('main-board')
 var player = new Player(225, 750)
 
 function Player(x, y) {
+  var self = this
   this.x = x
   this.y = y
   this.direction = 0
-  this.speed = 50
+  this.speed = 10
   this.sprite
 
   this.insertPlayer = function() {
@@ -18,12 +19,14 @@ function Player(x, y) {
   }
 
   this.move = function() {
-    this.x = this.x + this.speed * this.direction
-    this.sprite.style.left = this.x + 'px'
+    self.x = self.x + self.speed * self.direction
+    self.sprite.style.left = self.x + 'px'
   }
 }
 
 player.insertPlayer()
+
+var timerId = setInterval(player.move, 30)
 
 window.addEventListener('keydown', function(e) {
   switch (e.key) {
@@ -33,8 +36,9 @@ window.addEventListener('keydown', function(e) {
     case 'd':
       player.direction = 1
       break
-    default :
-      player.direction = 0
   }
-  player.move()
+})
+
+window.addEventListener('keyup', function() {
+  player.direction = 0
 })
