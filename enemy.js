@@ -1,7 +1,9 @@
-function Enemy (x, y, board) {
+function Enemy (x, y, board, player) {
   var self = this
   this.x = x
   this.y = y
+  this.height = 50
+  this.width = 50
   this.speed = 10
   this.sprite
 
@@ -15,6 +17,7 @@ function Enemy (x, y, board) {
   }
 
   this.move = function() {
+    self.checkCollision()
     self.y = self.y + self.speed
     self.sprite.style.top = self.y + 'px'
     if(self.y >= 760) {
@@ -27,6 +30,19 @@ function Enemy (x, y, board) {
   this.removeEnemy = function() {
     board.removeChild(this.sprite)
     clearInterval(this.timerId)
+  }
+
+  this.checkCollision = function() {
+    if(
+      this.y + this.height >= player.y &&
+      this.y <= player.y + player.height &&
+      this.x + this.width >= player.x &&
+      this.x <= player.x + player.width
+    ) {
+      player.isDead = true
+    }
+    console.log(player.isDead)
+      
   }
 }
 

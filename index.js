@@ -22,16 +22,29 @@ window.addEventListener('keyup', function() {
 })
 
 function start() {
-  var timerId = setInterval(player.move, 30)
+  var timerId = setInterval(playerMovement, 30)
   var timerId2 = setInterval(createEnemy , 2000)
 }
+
+function playerMovement() {
+  if(player.isDead) {
+    alert('Game Over')
+    //gameOver()
+  }
+  player.move()
+}
+
+/* function gameOver() {
+  //mostrar carátula de game over
+  //limpiar el board
+  //reiniciar el juego
+} */
 
 function createEnemy() {
   //var xRandom = Math.floor(Math.random() * 450) // Version completamente random
   var xRandom = Math.floor(Math.random() * 10) * 50   // versión arcade
-  var enemy = new Enemy(xRandom, 0, board)
+  var enemy = new Enemy(xRandom, 0, board, player)
   enemy.insertEnemy()
-  console.log(xRandom)
 }
 
 start()

@@ -2,8 +2,11 @@ function Player(x, y, board) {
   var self = this
   this.x = x
   this.y = y
+  this.height = 50
+  this.width = 50
   this.direction = 0
   this.speed = 5
+  this.isDead = false
   this.sprite
 
   this.insertPlayer = function() {
