@@ -1,6 +1,8 @@
 function Enemy (x, y, board) {
+  var self = this
   this.x = x
   this.y = y
+  this.speed = 10
   this.sprite
 
   this.insertEnemy = function() {
@@ -12,6 +14,12 @@ function Enemy (x, y, board) {
     board.appendChild(this.sprite)
   }
 
+  this.move = function() {
+    self.y = self.y + self.speed
+    self.sprite.style.top = self.y + 'px'
+  }
+
+  this.timerId = setInterval(this.move, 100)
 }
 
 export { Enemy }
