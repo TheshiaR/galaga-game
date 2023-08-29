@@ -17,9 +17,17 @@ function Enemy (x, y, board) {
   this.move = function() {
     self.y = self.y + self.speed
     self.sprite.style.top = self.y + 'px'
+    if(self.y >= 760) {
+      self.removeEnemy()
+    }
   }
 
   this.timerId = setInterval(this.move, 100)
+
+  this.removeEnemy = function() {
+    board.removeChild(this.sprite)
+    clearInterval(this.timerId)
+  }
 }
 
 export { Enemy }
