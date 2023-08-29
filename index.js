@@ -54,6 +54,7 @@ function createEnemy() {
   var enemy = new Enemy(xRandom, 0, board, player, enemies)
   enemy.insertEnemy()
   enemies.push(enemy)
+  console.log(enemies)
 }
 
 start()

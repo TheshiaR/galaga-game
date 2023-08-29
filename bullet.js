@@ -33,14 +33,17 @@ function Bullet(x, y, board, enemies) {
   }
 
   this.checkCollision = function() {
-    enemies.forEach(function(enemy) {
+    enemies.forEach(function(enemy, i) {
       if(
         self.y + self.height >= enemy.y &&
         self.y <= enemy.y + enemy.height &&
         self.x + self.width >= enemy.x &&
         self.x <= enemy.x + enemy.width
       ) {
-        console.log('Plas plas!!')
+        self.removeBullet()
+        board.removeChild(enemy.sprite)
+        enemies.splice(i, 1)
+        
       }
     })
  
