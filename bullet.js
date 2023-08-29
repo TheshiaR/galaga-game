@@ -1,7 +1,9 @@
-function Bullet(x, y, board) {
+function Bullet(x, y, board, enemies) {
   var self = this
   this.x = x
   this.y = y
+  this.height = 10
+  this.width = 10
   this.speed = 10
   this.sprite
 
@@ -15,7 +17,7 @@ function Bullet(x, y, board) {
   }
 
   this.move = function() {
-    //self.checkCollision()
+    self.checkCollision()
     self.y = self.y - self.speed
     self.sprite.style.top = self.y + 'px'
     if(self.y <= 0) {
@@ -28,6 +30,21 @@ function Bullet(x, y, board) {
   this.removeBullet = function() {
     board.removeChild(this.sprite)
     clearInterval(this.timerId)
+  }
+
+  this.checkCollision = function() {
+    enemies.forEach(function(enemy) {
+      if(
+        self.y + self.height >= enemy.y &&
+        self.y <= enemy.y + enemy.height &&
+        self.x + self.width >= enemy.x &&
+        self.x <= enemy.x + enemy.width
+      ) {
+        console.log('Plas plas!!')
+      }
+    })
+ 
+      
   }
 
 }

@@ -7,6 +7,8 @@ var board = document.getElementById('main-board')
 var player = new Player(225, 750, board)
 player.insertPlayer()
 
+var enemies = []
+
 window.addEventListener('keydown', function(e) {
   switch (e.key) {
     case 'a':
@@ -16,7 +18,7 @@ window.addEventListener('keydown', function(e) {
       player.direction = 1
       break
     case ' ':
-      var bullet = new Bullet(player.x + 20, player.y - 10, board)
+      var bullet = new Bullet(player.x + 20, player.y - 10, board, enemies)
       bullet.insertBullet()
       break
   }
@@ -42,14 +44,16 @@ function playerMovement() {
 /* function gameOver() {
   //mostrar carátula de game over
   //limpiar el board
+  //resetear la parte lógica
   //reiniciar el juego
 } */
 
 function createEnemy() {
   //var xRandom = Math.floor(Math.random() * 450) // Version completamente random
   var xRandom = Math.floor(Math.random() * 10) * 50   // versión arcade
-  var enemy = new Enemy(xRandom, 0, board, player)
+  var enemy = new Enemy(xRandom, 0, board, player, enemies)
   enemy.insertEnemy()
+  enemies.push(enemy)
 }
 
 start()

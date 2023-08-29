@@ -1,4 +1,4 @@
-function Enemy (x, y, board, player) {
+function Enemy (x, y, board, player, enemies) {
   var self = this
   this.x = x
   this.y = y
@@ -30,6 +30,7 @@ function Enemy (x, y, board, player) {
   this.removeEnemy = function() {
     board.removeChild(this.sprite)
     clearInterval(this.timerId)
+    enemies.shift()
   }
 
   this.checkCollision = function() {
@@ -41,7 +42,6 @@ function Enemy (x, y, board, player) {
     ) {
       player.isDead = true
     }
-    console.log(player.isDead)
       
   }
 }
