@@ -45,9 +45,7 @@ function Bullet(x, y, board, enemies) {
         enemies.splice(i, 1)
         
       }
-    })
- 
-      
+    }) 
   }
 
 }
